@@ -1,0 +1,67 @@
+
+<div class="container-sm card mt-5 ml-5 mr-5 mb-5">
+    <div><h5 class="text-center border-bottom border-danger t-5 text-primary">Team Generator <p>Total team members: {{totalLength}}</p></h5></div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">  
+         
+
+               
+        
+                <div class="card-body border mb-3">
+                  
+                <p class="text text-danger" *ngIf="errorMessage"> {{errorMessage}}</p>
+                <label class="form-label">Name</label>
+                <input 
+                #addMemberInput
+                class="form-control form-control-sm" 
+                type="text" 
+                placeholder="Name of Team"
+                (input)="onInput(addMemberInput.value)"
+                [value]="newMemberName">
+
+                <label class="form-label">Number</label>
+                <input class="form-control form-control-sm" 
+                #numberOfTeamsInput
+                type="number"
+                placeholder="Number which you want your group to be divided into."
+                (input)="onNumberOfTeamInput(numberOfTeamsInput.value)"
+                [value]="numberOfTeams">
+
+                <div>
+                    <button type="button" class="btn btn-primary btn-sm mt-2" (click)="addTeam()">Add</button>
+                    <button type="button" class="btn btn-danger btn-sm mt-2 ml-5" (click)="genarateTeam()">Generate Team</button>
+                </div>
+               
+            </div>
+            </div>
+           
+            <div class="col-sm-6 col-md-6 col-lg-6">  
+              <div class="card" *ngIf="members.length">
+                <div class="card-body">
+                  <ul class="list-group list-group-flush" >
+                    <li class="list-group-item" *ngFor="let member of members let i=index" >{{member}}</li>
+                  </ul>
+              </div>
+            </div>
+
+            <div class="card" *ngIf="teams.length">
+              <div class="card-body" *ngFor="let member of teams let i=index">
+                <h4>team: {{i+1}}</h4>
+                <ul class="list-group list-group-flush" >
+                  <li class="list-group-item border"  >{{ member }}</li>
+                  
+                </ul>
+                
+            </div>
+            <input class="btn btn-warning btn-sm btn-block" 
+            type="reset" 
+            value="Reset"
+            (click)="resetTeamForm()">
+          </div>
+
+           
+        </div>
+ 
+      </div>   
+</div>
+
